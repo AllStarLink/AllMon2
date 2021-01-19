@@ -178,4 +178,3 @@ function get_voter($fp, $actionID) {
         return FALSE;
     }
 }
-?>

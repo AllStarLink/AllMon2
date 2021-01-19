@@ -1,9 +1,10 @@
 <?php
+
 include('session.inc');
 include('allmon.inc.php');
 
 if ($_SESSION['loggedin'] !== true) {
-	die("Please login to use connect/disconnect functions.\n");
+    die("Please login to use connect/disconnect functions.\n");
 }
 
 
@@ -13,10 +14,10 @@ $perm = @trim(strip_tags($_POST['perm']));
 $button = @trim(strip_tags($_POST['button']));
 $localnode = @trim(strip_tags($_POST['localnode']));
 
-if (! preg_match("/^\d+$/",$remotenode)) {
+if (!preg_match("/^\d+$/", $remotenode)) {
     die("Please provide node number to connect.\n");
 }
-if (! preg_match("/^\d+$/",$localnode)) {
+if (!preg_match("/^\d+$/", $localnode)) {
     die("Please provide local node number.\n");
 }
 
@@ -29,11 +30,11 @@ $config = parse_ini_file('allmon.ini.php', true);
 
 // Open a socket to Asterisk Manager
 $fp = AMIconnect($config[$localnode]['host']);
-if (FALSE === $fp) {
-	die("Could not connect to Asterisk Manager.\n\n");
+if (false === $fp) {
+    die("Could not connect to Asterisk Manager.\n\n");
 }
-if (FALSE === AMIlogin($fp, $config[$localnode]['user'], $config[$localnode]['passwd'])) {
-	die("Could not login to Asterisk Manager.");
+if (false === AMIlogin($fp, $config[$localnode]['user'], $config[$localnode]['passwd'])) {
+    die("Could not login to Asterisk Manager.");
 }
 
 // Which ilink command?
@@ -74,11 +75,12 @@ if ($button == 'connect') {
 #exit;
 
 // Asterisk Manger Interface needs an actionID so we can find our own response
-$actionRand = mt_rand();    
-$actionID = 'connect' . $actionRand;
+$actionRand = mt_rand();
+$actionID = 'connect'.$actionRand;
 
 // Do it
-if ((@fwrite($fp,"ACTION: COMMAND\r\nCOMMAND: rpt cmd $localnode ilink $ilink $remotenode\r\nActionID: $actionID\r\n\r\n")) > 0 ) {
+if ((@fwrite($fp,
+        "ACTION: COMMAND\r\nCOMMAND: rpt cmd $localnode ilink $ilink $remotenode\r\nActionID: $actionID\r\n\r\n")) > 0) {
     // Get response, but do nothing with it
     $rptStatus = get_response($fp, $actionID);
     #print "<pre>===== start =====\n";

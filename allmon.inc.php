@@ -72,5 +72,3 @@ function getAstInfo($nodeNum, $node=array()) {
 
     return $info;
 }
-
-?>
