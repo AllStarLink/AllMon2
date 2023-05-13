@@ -1,0 +1,8 @@
+*.php usr/share/allmon2
+*.inc usr/share/allmon2
+*.html usr/share/allmon2
+*.css usr/share/allmon2
+*.js usr/share/allmon2
+allstarLogo.png usr/share/allmon2
+favicon.ico usr/share/allmon2
+images/* usr/share/allmon2/images

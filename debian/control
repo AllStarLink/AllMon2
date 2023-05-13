@@ -1,0 +1,12 @@
+Source: allmon2
+Section: comm
+Priority: optional
+Maintainer: Adam Paul <adamjpaul@gmail.com>
+Build-Depends: debhelper (>=11~)
+Standards-Version: 4.1.4
+
+Package: allmon2
+Architecture: all
+Multi-arch: foreign
+Depends: 
+Description: web site for managing one or more app_rpt (aka Allstar) nodes
